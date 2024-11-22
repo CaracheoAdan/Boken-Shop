@@ -10,7 +10,7 @@
       $resultado = $sql ->fetchAll(PDO::FETCH_ASSOC);
     
        print_r($_SESSION);
-      //session_destroy();
+       //session_destroy();
 ?>
 
 <!DOCTYPE html>
