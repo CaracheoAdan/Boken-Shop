@@ -4,6 +4,8 @@ require('header.php');
 require('config/sistema.class.php');
 $db = new Sistema();
 $con = $db->conexion();
+print_r($_SESSION);
+
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $token = isset($_GET['token']) ? $_GET['token'] : '';
@@ -27,16 +29,16 @@ if ($id == '' || $token == '') {
             $precio_desc = $precio - (($precio * $descuento) / 100);
             $dir_images = 'images/productos/' . $id . '/';
 
-            $rutaImg = $dir_images . 'principal.jfif';
+            $rutaImg = $dir_images . 'principal.jpg';
             if (!file_exists($rutaImg)) {
                 $rutaImg = 'images/default.jfif';
             }
 
-            $imagenes = array();
-            if (is_dir($dir_images)) {
-                $dir = dir($dir_images);
+                 $imagenes = array();
+                if (file_exists($dir_images)) {
+                 $dir = dir($dir_images);
                 while (($archivo = $dir->read()) !== false) {
-                    if ($archivo != 'principal.jfif' && (strpos($archivo, 'jfif') || strpos($archivo, 'jpg'))) {
+                    if ($archivo != 'principal.jpg' && (strpos($archivo, '.jpg') || strpos($archivo, 'jpeg'))) {
                         $imagenes[] = $dir_images . $archivo;
                     }
                 }
@@ -86,7 +88,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                             <a href="#" class="nav-link">Contacto</a>
                         </li>
                     </ul>
-                    <a href="carrito.php" class="btn btn-primary">Carrito</a>
+                    <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -135,13 +138,36 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <?php echo $descripcion; ?>
                     </p>
                     <div class="d-grid gap-3 col-10 mx-auto"> 
-                        <button class="btn btn-primary" type="button">Comprar Ahora</button>
-                        <button class="btn btn-outline-primary" type="button">Agregar al carrito</button>
+                    <button class="btn btn-primary" type="button">Comprar Ahora</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script>
+    function addProducto(id, token) {
+        let url = 'clases/carrito.php';
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('token', token);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                let elemento = document.getElementById("num_cart");
+                elemento.innerHTML = data.numero
+            }
+        })
+    }
+</script>
+
+</html>
 </body>
 </html>
 

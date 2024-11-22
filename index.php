@@ -8,6 +8,9 @@
       $sql = $con->prepare("select id, nombre, precio from productos where activo = 1");
       $sql -> execute();
       $resultado = $sql ->fetchAll(PDO::FETCH_ASSOC);
+    
+       print_r($_SESSION);
+      //session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +41,8 @@
                             <a href="#" class="nav-link">Contacto</a>
                         </li>
                     </ul>
-                    <a href="carrito.php" class="btn btn-primary">Carrito</a>
+                    <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
+                    </a>                
                 </div>
             </div>
         </div>
@@ -52,7 +56,7 @@
                     <div class="card mb-4 box-shadow">
                         <?php 
                           $id = $row['id'];
-                          $imagen = "images/productos/".$id."/principal.jfif";//La imagen se esta sacando dirrectamente de una carpeta y no de la base de datos
+                          $imagen = "images/productos/".$id."/principal.jpg";//La imagen se esta sacando dirrectamente de una carpeta y no de la base de datos
                           if(!file_exists($imagen)){
                               $imagen = "images/default.jfif";
                           }
@@ -63,10 +67,10 @@
                             <p class="card-text">$<?php echo number_format($row['precio'],2, '.',',');?></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1',$row['id'], KEY_TOKEN);?>" class="btn btn-primary">Detalles</a>
+                                 <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
                                 </div>
-                                <a href="#" class="btn btn-success">Agregar</a>
-                            </div>
+                                    <button class="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -74,6 +78,27 @@
             </div>
         </div>
     </main>
+    <script>
+    function addProducto(id, token) {
+        let url = 'clases/carrito.php';
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('token', token);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                let elemento = document.getElementById("num_cart");
+                elemento.innerHTML = data.numero
+            }
+        })
+    }
+</script>
 </body>
 </html>
 
