@@ -97,11 +97,22 @@
                         
                             <td>   <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"> <?php echo MONEDA . number_format($subtotal,2,'.',','); ?></div> </td>
                             <td> <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toogle="modal" data-bs-target="eliminaModal">Eliminar</a></td>
-                        </tr>
+                            </tr>
                         <?php }?>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="2">
+                                <p class="h3" id="total"><?php echo MONEDA . number_format($total, 2 , '.', ','); ?></p>
+                            </td>
+                        </tr>
                     </tbody>
-                    <?php }?>
+                    <?php } ?>
                 </table>
+            </div>
+            <div class="row">
+                 <div class="col-md-5 offset-md-7 d-grid gap-2">
+                        <button class="btn btn-primary btn-lg">Realizar pago</button>
+                 </div>               
             </div>
         </div>
     </main>
