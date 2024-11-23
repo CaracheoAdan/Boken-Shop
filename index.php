@@ -25,7 +25,7 @@
     <header>
         <div class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a href="#" class="navbar-brand">
+                <a href="·" class="navbar-brand">
                     <strong>BOKEN SHOOP</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
                             <a href="#" class="nav-link">Contacto</a>
                         </li>
                     </ul>
-                    <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
+                    <a href="checkout.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
                     </a>                
                 </div>
             </div>
