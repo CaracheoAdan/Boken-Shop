@@ -4,7 +4,7 @@ require('header.php');
 require('config/sistema.class.php');
 $db = new Sistema();
 $con = $db->conexion();
-print_r($_SESSION);
+//print_r($_SESSION);
 
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';

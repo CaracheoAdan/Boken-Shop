@@ -6,7 +6,7 @@
       $con = $db->conexion();
 
       $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
-      print_r($_SESSION);
+     // print_r($_SESSION);
     
        $lista_carrito = array();
 
@@ -21,7 +21,7 @@
 
       
     
-       print_r($_SESSION);
+      // print_r($_SESSION);
        //session_destroy();
 ?>
 
@@ -93,7 +93,7 @@
                         <tr>
                             <td>  <?php echo $nombre; ?></td>
                             <td>   <?php echo MONEDA . number_format($precio_desc,2,'.',',') ?></td>
-                            <td>  <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad; ?>" size="5" id= "cantidad_<?php echo $_id; ?>" onchange=""></td>
+                            <td>  <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad; ?>" size="5" id= "cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value, <?php echo $_id; ?>)"></td>
                         
                             <td>   <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"> <?php echo MONEDA . number_format($subtotal,2,'.',','); ?></div> </td>
                             <td> <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toogle="modal" data-bs-target="eliminaModal">Eliminar</a></td>
@@ -117,25 +117,33 @@
         </div>
     </main>
     <script>
-    function addProducto(id, token) {
-        let url = 'clases/carrito.php';
-        let formData = new FormData();
-        formData.append('id', id);
-        formData.append('token', token);
+   function actualizaCantidad(cantidad, id) {
+    let url = 'clases/actualizar_carrito.php';
+    let formData = new FormData();
+    formData.append('action', 'agregar');
+    formData.append('id', id);
+    formData.append('cantidad', cantidad);
 
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-            mode: 'cors'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.ok) {
-                let elemento = document.getElementById("num_cart");
-                elemento.innerHTML = data.numero
-            }
-        })
-    }
+    let divsubtotal = document.getElementById('subtotal_' + id);
+    divsubtotal.innerHTML = 'Calculando...'; // Muestra un mensaje temporal
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            divsubtotal.innerHTML = data.sub; // Actualiza el subtotal
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        divsubtotal.innerHTML = 'Error'; // Muestra un error si algo falla
+    });
+}
+
 </script>
 </body>
 </html>
