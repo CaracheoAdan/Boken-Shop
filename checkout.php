@@ -117,6 +117,24 @@ if ($productos != null) {
             </div>
         </div>
     </main>
+     <!-- Modal -->
+<div class="modal fade" id="eliminaModal" tabindex="-1" aria-labelledby="eliminaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="eliminaModalLabel">Alerta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de eliminar el producto de tu carrito?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button-elimina" class="btn btn-danger" onclick="elimina()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>                           
     <script>
    function actualizaCantidad(cantidad, id) {
     let url = 'clases/actualizar_carrito.php';
