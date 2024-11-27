@@ -130,12 +130,20 @@ if ($productos != null) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button-elimina" class="btn btn-danger" onclick="elimina()">Eliminar</button>
+        <button id="btn-elimina" type = "button" class="btn btn-danger" onclick="elimina()">Eliminar</button>
       </div>
     </div>
   </div>
 </div>                           
     <script>
+   let eliminaModal = document.getElementById('eliminaModal');
+    eliminaModal.addEventListener('show.bs.modal', function(event){
+        let button = event.relatedTarget;
+        let id = button.getAttribute('data-bs-id');
+        let buttonElimina = eliminaModal.querySelector('.modal-footer #btn-elimina');
+        buttonElimina.value = id;
+    });
+
    function actualizaCantidad(cantidad, id) {
     let url = 'clases/actualizar_carrito.php';
     let formData = new FormData();
