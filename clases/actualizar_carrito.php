@@ -2,7 +2,7 @@
 require('../config/config.php');
 require('../config/sistema.class.php');
 
-header('Content-Type: application/json'); // Asegúrate de que el encabezado sea JSON
+header('Content-Type: application/json'); 
 
 $datos = ['ok' => false];
 

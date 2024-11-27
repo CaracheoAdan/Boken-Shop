@@ -1,28 +1,26 @@
 <?php 
-      require('header.php'); 
-      require ('config/config.php');
-      require('config/sistema.class.php');
-      $db = new Sistema();
-      $con = $db->conexion();
+require('header.php'); 
+require ('config/config.php');
+require('config/sistema.class.php');
+$db = new Sistema();
+$con = $db->conexion();
 
-      $productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
-     // print_r($_SESSION);
-    
-       $lista_carrito = array();
+$productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
+// print_r($_SESSION);
 
-      if ($productos != null){
-        foreach ($productos as $clave => $cantidad){
-            $sql = $con->prepare("select id, nombre, precio, descuento, $cantidad as cantidad from productos 
-            where id=? and activo = 1");
-            $sql -> execute([$clave]);
-            $lista_carrito[] = $sql->fetch(PDO::FETCH_ASSOC);
-        }
-      }
+$lista_carrito = array();
 
-      
-    
-      // print_r($_SESSION);
-       //session_destroy();
+if ($productos != null) {
+    foreach ($productos as $clave => $cantidad) {
+        $sql = $con->prepare("select id, nombre, precio, descuento, $cantidad as cantidad from productos 
+        where id=? and activo = 1");
+        $sql->execute([$clave]);
+        $lista_carrito[] = $sql->fetch(PDO::FETCH_ASSOC);
+    }
+}
+
+// print_r($_SESSION);
+// session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +51,7 @@
                             <a href="#" class="nav-link">Contacto</a>
                         </li>
                     </ul>
-                    <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span>
-                    </a>                
+                    <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span></a>                
                 </div>
             </div>
         </div>
@@ -74,45 +71,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($lista_carrito == null){
-                            echo "<tr><td colspan='5' class='text-center'><b>No hay productos en el carrito</b></td></tr>";
-                            return;
-                        }else{
+                        <?php if ($lista_carrito == null) { ?>
+                            <tr><td colspan="5" class="text-center"><b>No hay productos en el carrito</b></td></tr>
+                        <?php 
+                        } else {
                             $total = 0;
-                            foreach($lista_carrito as $producto){
+                            foreach ($lista_carrito as $producto) {
                                 $_id = $producto['id'];
                                 $nombre = $producto['nombre'];
                                 $precio = $producto['precio'];
                                 $descuento = $producto['descuento'];
                                 $cantidad = $producto['cantidad'];
-                                $precio_desc = $precio -(($precio * $descuento) / 100);
+                                $precio_desc = $precio - (($precio * $descuento) / 100);
                                 $subtotal = $cantidad * $precio_desc;
                                 $total += $subtotal;
- 
                         ?>
                         <tr>
-                            <td>  <?php echo $nombre; ?></td>
-                            <td>   <?php echo MONEDA . number_format($precio_desc,2,'.',',') ?></td>
-                            <td>  <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad; ?>" size="5" id= "cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value, <?php echo $_id; ?>)"></td>
-                        
-                            <td>   <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"> <?php echo MONEDA . number_format($subtotal,2,'.',','); ?></div> </td>
-                            <td> <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toogle="modal" data-bs-target="eliminaModal">Eliminar</a></td>
-                            </tr>
-                        <?php }?>
+                            <td><?php echo $nombre; ?></td>
+                            <td><?php echo MONEDA . number_format($precio_desc, 2, '.', ','); ?></td>
+                            <td>
+                                <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad; ?>" size="5" id="cantidad_<?php echo $_id; ?>" onchange="actualizaCantidad(this.value, <?php echo $_id; ?>)">
+                            </td>
+                            <td>
+                                <div id="subtotal_<?php echo $_id; ?>" name="subtotal[]"><?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?></div>
+                            </td>
+                            <td>
+                                <a href="#" id="eliminar" class="btn btn-warning btn-sm" data-bs-id="<?php echo $_id; ?>" data-bs-toggle="modal" data-bs-target="#eliminaModal">Eliminar</a>
+                            </td>
+                        </tr>
+                        <?php } ?>
                         <tr>
                             <td colspan="3"></td>
                             <td colspan="2">
-                                <p class="h3" id="total"><?php echo MONEDA . number_format($total, 2 , '.', ','); ?></p>
+                                <p class="h3" id="total"><?php echo MONEDA . number_format($total, 2, '.', ','); ?></p>
                             </td>
                         </tr>
+                        <?php } ?>
                     </tbody>
-                    <?php } ?>
                 </table>
             </div>
             <div class="row">
-                 <div class="col-md-5 offset-md-7 d-grid gap-2">
-                        <button class="btn btn-primary btn-lg">Realizar pago</button>
-                 </div>               
+                <div class="col-md-5 offset-md-7 d-grid gap-2">
+                    <button class="btn btn-primary btn-lg">Realizar pago</button>
+                </div>
             </div>
         </div>
     </main>
@@ -124,9 +125,6 @@
     formData.append('id', id);
     formData.append('cantidad', cantidad);
 
-    let divsubtotal = document.getElementById('subtotal_' + id);
-    divsubtotal.innerHTML = 'Calculando...'; // Muestra un mensaje temporal
-
     fetch(url, {
         method: 'POST',
         body: formData,
@@ -135,16 +133,36 @@
     .then(response => response.json())
     .then(data => {
         if (data.ok) {
-            divsubtotal.innerHTML = data.sub; // Actualiza el subtotal
+            // Actualiza el subtotal del producto
+            let divsubtotal = document.getElementById('subtotal_' + id);
+            divsubtotal.innerHTML = data.sub;
+
+            // Recalcula el total global
+            let total = 0.00;
+            let list = document.getElementsByName('subtotal[]');
+
+            // Suma los valores de los subtotales asegurándose de que sean válidos
+            for (let i = 0; i < list.length; i++) {
+                let valor = parseFloat(list[i].innerHTML.replace(/[$,]/g, ''));
+                if (!isNaN(valor)) {
+                    total += valor;
+                }
+            }
+
+            // Formatea el total y lo muestra
+            total = new Intl.NumberFormat('en-US', {
+                minimumFractionDigits: 2
+            }).format(total);
+
+            document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>' + total;
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        divsubtotal.innerHTML = 'Error'; // Muestra un error si algo falla
     });
 }
 
-</script>
+    </script>
 </body>
 </html>
 
