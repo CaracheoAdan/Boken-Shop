@@ -130,7 +130,7 @@ if ($productos != null) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button id="btn-elimina" type = "button" class="btn btn-danger" onclick="elimina()">Eliminar</button>
+        <button id="btn-elimina" type = "button" class="btn btn-danger" onclick="eliminar()">Eliminar</button>
       </div>
     </div>
   </div>
@@ -159,28 +159,43 @@ if ($productos != null) {
     .then(response => response.json())
     .then(data => {
         if (data.ok) {
-            // Actualiza el subtotal del producto
             let divsubtotal = document.getElementById('subtotal_' + id);
             divsubtotal.innerHTML = data.sub;
-
-            // Recalcula el total global
             let total = 0.00;
             let list = document.getElementsByName('subtotal[]');
-
-            // Suma los valores de los subtotales asegurándose de que sean válidos
             for (let i = 0; i < list.length; i++) {
                 let valor = parseFloat(list[i].innerHTML.replace(/[$,]/g, ''));
                 if (!isNaN(valor)) {
                     total += valor;
                 }
             }
-
-            // Formatea el total y lo muestra
             total = new Intl.NumberFormat('en-US', {
                 minimumFractionDigits: 2
             }).format(total);
 
             document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>' + total;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+function eliminar() {
+    let botonElimina = document.getElementById('btn-elimina');
+    let id = botonElimina.value;
+    let url = 'clases/actualizar_carrito.php';
+    let formData = new FormData();
+    formData.append('action', 'eliminar');
+    formData.append('id', id);
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {   
+            location.reload();  
         }
     })
     .catch(error => {
