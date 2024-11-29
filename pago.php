@@ -147,7 +147,9 @@ if ($productos != null) {
                             body: JSON.stringify({
                                 detalles: detalles
                             })
-                        });
+                        }).then(function(response){
+                            window.location.href="completado.php" +detalles['id']; //$datos['detalles']['id']
+                        })
                     });
                 },
                 onCancel: function(data) {

@@ -40,6 +40,7 @@
                     $sql_insert = $con->prepare("INSERT INTO detalle_compra (id_compra, id_producto, nombre, precio, cantidad) values (?,?,?,?,?)");
                     $sql_insert->execute([$id, $clave, $row_prod['nombre'], $precio_desc, $cantidad]);
                 }
+                include 'enviar_email.php';
             }
             unset($_SESSION['carrito']);
         }
