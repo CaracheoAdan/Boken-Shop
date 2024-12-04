@@ -1,8 +1,8 @@
 <?php
     define("SGBD", 'mysql');
     define("DBHOST",'localhost');
-    define("DBNAME",'tiendaprueva');
-    define("DBUSER",'tiendaprueva');
+    define("DBNAME",'boken'); //
+    define("DBUSER",'boken');
     define("DBPASS",'123');
     define("DBPORT",'3306');
 ?>
