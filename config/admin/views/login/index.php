@@ -1,6 +1,12 @@
 <?php
   require_once('views/header.php');
 ?>
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark" style="height: 70px; display: flex; justify-content: center; align-items: center;">
+  <div class="container-fluid" style="display: flex; justify-content: center; align-items: center;">
+    <a class="navbar-brand" href="../../catalogo.php" style="color: white; font-size: 20px; text-align: center;">BOKEN</a>
+  </div>
+</nav>
+
 
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh; background-color: #f8f9fa;">
     <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 15px;">
