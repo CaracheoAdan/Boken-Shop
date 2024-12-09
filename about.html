@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Boken - Tu Tienda de Ropa</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="tienda de ropa, moda, estilo, boken" name="keywords">
+    <meta content="Boken es tu tienda de ropa online con las últimas tendencias en moda y estilo." name="description">
+
+    <!-- Favicon -->
+    <link href="images/favicon.ico" rel="icon">
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Puedes cambiar las fuentes si lo deseas -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Hojas de estilo de iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Hojas de estilo de librerías -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Hoja de estilo de Bootstrap personalizada -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Hoja de estilo principal -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner de carga (opcional) -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Cargando...</span>
+        </div>
+    </div>
+    <!-- Fin del Spinner -->
+
+
+    <!-- Barra superior -->
+    <div class="container-fluid bg-dark px-5">
+        <div class="row gx-4 d-none d-lg-flex">
+            <div class="col-lg-6 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <div class="btn-sm-square rounded-circle bg-primary me-2">
+                        <small class="fa fa-map-marker-alt text-white"></small>
+                    </div>
+                    <small>Calle Principal #123, Ciudad, País</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <div class="btn-sm-square rounded-circle bg-primary me-2">
+                        <small class="fa fa-envelope-open text-white"></small>
+                    </div>
+                    <small>contacto@boken.com</small>
+                </div>
+            </div>
+            <div class="col-lg-6 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <div class="btn-sm-square rounded-circle bg-primary me-2">
+                        <small class="fa fa-phone-alt text-white"></small>
+                    </div>
+                    <small>+01 234 567 890</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <div class="btn-sm-square rounded-circle bg-primary me-2">
+                        <small class="far fa-clock text-white"></small>
+                    </div>
+                    <small>Lun - Vie : 9AM - 9PM</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la barra superior -->
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top p-0 px-4 px-lg-5">
+        <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <h2 class="m-0 text-light">Boken</h2>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-4 py-lg-0">
+                <a href="index.html" class="nav-item nav-link text-light">Inicio</a>
+                <a href="about.html" class="nav-item nav-link text-light">Sobre Nosotros</a>
+                <a href="shop.html" class="nav-item nav-link text-light">Tienda</a>
+                <a href="collections.html" class="nav-item nav-link text-light">Colecciones</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown">Categorías</a>
+                    <div class="dropdown-menu bg-dark">
+                        <a href="category1.html" class="dropdown-item text-light">Ropa de Hombre</a>
+                        <a href="category2.html" class="dropdown-item text-light">Ropa de Mujer</a>
+                        <a href="category3.html" class="dropdown-item text-light">Accesorios</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link text-light">Contacto</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Fin del Navbar -->
+
+
+    <!-- Encabezado de página -->
+    <div class="container-fluid page-header py-5 mb-5" style="background-image: url('images/page-header.jpg'); background-size: cover;">
+        <div class="container py-5">
+            <h1 class="display-3 text-black mb-3 animated slideInDown">Sobre Nosotros</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-black" href="#">Inicio</a></li>
+                    <li class="breadcrumb-item"><a class="text-black" href="#">Páginas</a></li>
+                    <li class="breadcrumb-item text-black active" aria-current="page">Sobre Nosotros</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Fin del encabezado de página -->
+
+
+    <!-- Sección de ventajas o características -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Ventaja 1 -->
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="h-100 bg-dark p-4 p-xl-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="btn-square rounded-circle bg-light" style="width: 64px; height: 64px;">
+                                <img class="images-fluid" src="images/icon/icon-1.png" alt="Icono de tendencias">
+                            </div>
+                            <h1 class="display-1 mb-0 text-light">01</h1>
+                        </div>
+                        <h5 class="text-white">Últimas Tendencias</h5>
+                        <hr class="w-25">
+                        <span>Descubre las últimas tendencias en moda y actualiza tu guardarropa con estilos únicos.</span>
+                    </div>
+                </div>
+                <!-- Ventaja 2 -->
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="h-100 bg-dark p-4 p-xl-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="btn-square rounded-circle bg-light" style="width: 64px; height: 64px;">
+                                <img class="images-fluid" src="images/icon/icon-2.png" alt="Icono de calidad">
+                            </div>
+                            <h1 class="display-1 mb-0 text-light">02</h1>
+                        </div>
+                        <h5 class="text-white">Calidad Garantizada</h5>
+                        <hr class="w-25">
+                        <span>Nuestras prendas están fabricadas con materiales de alta calidad para ofrecerte lo mejor.</span>
+                    </div>
+                </div>
+                <!-- Ventaja 3 -->
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="h-100 bg-dark p-4 p-xl-5">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="btn-square rounded-circle bg-light" style="width: 64px; height: 64px;">
+                                <img class="images-fluid" src="images/icon/icon-3.png" alt="Icono de envío">
+                            </div>
+                            <h1 class="display-1 mb-0 text-light">03</h1>
+                        </div>
+                        <h5 class="text-white">Envíos a Todo el País</h5>
+                        <hr class="w-25">
+                        <span>Recibe tus compras en la puerta de tu casa, sin importar dónde te encuentres.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la sección de ventajas -->
+
+
+    <!-- Sección Sobre Nosotros -->
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container about px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <!-- Imagen relacionada con la tienda -->
+                        <images class="position-absolute images-fluid w-100 h-100" src="images/about.jpg" style="object-fit: cover;" alt="Sobre Nosotros">
+                    </div>
+                </div>
+                <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <div class="bg-primary mb-3" style="width: 60px; height: 2px;"></div>
+                        <h1 class="display-5 mb-4">Sobre Nosotros</h1>
+                        <p class="mb-4 pb-2">En <strong>Boken</strong>, nos apasiona la moda y creemos que cada persona merece lucir y sentirse bien con su estilo. Ofrecemos una amplia variedad de prendas para todas las ocasiones.</p>
+                        <div class="row g-4 mb-4 pb-3">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
+                                        <!-- Icono de clientes felices -->
+                                        <images class="images-fluid" src="images/icon/icon-1.png" alt="Clientes Felices">
+                                    </div>
+                                    <div class="ms-4">
+                                        <h2 class="mb-1" data-toggle="counter-up">4689</h2>
+                                        <p class="fw-medium text-primary mb-0">Clientes Felices</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="d-flex align-items-center">
+                                    <div class="btn-square bg-white rounded-circle" style="width: 64px; height: 64px;">
+                                        <!-- Icono de diseños exclusivos -->
+                                        <images class="images-fluid" src="images/icon/icon-5.png" alt="Diseños Exclusivos">
+                                    </div>
+                                    <div class="ms-4">
+                                        <h2 class="mb-1" data-toggle="counter-up">923</h2>
+                                        <p class="fw-medium text-primary mb-0">Diseños Exclusivos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn btn-primary rounded-pill py-3 px-5">Conócenos Más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la sección Sobre Nosotros -->
+
+
+    <!-- Sección del equipo -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-primary mb-3 mx-auto" style="width: 60px; height: 2px;"></div>
+                <h1 class="display-5 mb-5">Nuestro Equipo</h1>
+            </div>
+            <div class="row g-4">
+                <!-- Miembro del equipo -->
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item">
+                        <div class="overflow-hidden position-relative">
+                            <images class="images-fluid" src="images/team-1.jpg" alt="Diseñadora">
+                            <div class="team-social">
+                                <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-dark rounded-circle m-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">María López</h5>
+                            <span class="text-primary">Diseñadora de Moda</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Agrega más miembros del equipo aquí -->
+            </div>
+        </div>
+    </div>
+    <!-- Fin de la sección del equipo -->
+        
+
+    <!-- Pie de página -->
+    <div class="container-fluid bg-dark text-secondary footer mt-5 py-5 wow fadeIn">
+        <div class="container py-5">
+            <div class="row g-5">
+                <!-- Información de contacto -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Contáctanos</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Calle Principal #123, Ciudad, País</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+01 234 567 890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>contacto@boken.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square btn-outline-secondary rounded-circle me-2" href=""><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <!-- Servicios -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Nuestros Servicios</h5>
+                    <a class="btn btn-link" href="">Asesoría de Estilo</a>
+                    <a class="btn btn-link" href="">Personalización de Ropa</a>
+                    <a class="btn btn-link" href="">Envíos Rápidos</a>
+                    <a class="btn btn-link" href="">Cambios y Devoluciones</a>
+                    <a class="btn btn-link" href="">Atención al Cliente</a>
+                </div>
+                <!-- Enlaces rápidos -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Enlaces Rápidos</h5>
+                    <a class="btn btn-link" href="">Sobre Nosotros</a>
+                    <a class="btn btn-link" href="">Contacto</a>
+                    <a class="btn btn-link" href="">Tienda</a>
+                    <a class="btn btn-link" href="">Términos y Condiciones</a>
+                    <a class="btn btn-link" href="">Soporte</a>
+                </div>
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-light mb-4">Boletín de Noticias</h5>
+                    <p>Suscríbete para recibir ofertas exclusivas y las últimas novedades.</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-transparent border-secondary w-100 py-3 ps-4 pe-5" type="email" placeholder="Tu correo electrónico">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Suscribirse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del pie de página -->
+
+
+    <!-- Derechos de autor -->
+    <div class="container-fluid py-4" style="background: #000000;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Boken</a>, Todos los derechos reservados.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    Diseñado por <a class="border-bottom" href="#">Equipo Boken</a><br>
+                    Distribuido por <a class="border-bottom" href="#">Boken Moda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin de derechos de autor -->
+
+
+    <!-- Botón volver arriba -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- Librerías JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- JavaScript personalizado -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
