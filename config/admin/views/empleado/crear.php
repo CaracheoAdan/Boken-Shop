@@ -1,57 +1,60 @@
-<?php require('views/header/headerAdministrador.php'); ?>
-<center>
-    <h1><?php if($accion=="crear"):echo('Nuevo');else: echo ('Modificar');endif; ?> empleado</h1>
-</center>
+<?php require('views/header/headerAdministrador.php');?>
+<h1><?php echo ($accion == "crear") ? "Nuevo " : "Modificar "; ?>Empleado</h1>
 
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <form method="post" enctype="multipart/form-data" action="empleado.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
-
-        <div class="mb-3">
-            <label for="primer_apellido" class="form-label">Primer apellido</label>
-            <input class="form-control" type="text" name="data[primer_apellido]" placeholder="Escribe aquí el primer apellido" value="<?php if(isset($empleados["primer_apellido"])):echo($empleados['primer_apellido']);endif;?>" id="primer_apellido"/>
+<form action="empleado.php?accion=<?php echo ($accion == "crear") ? 'nuevo' : 'modificar&id=' . $id; ?>" method="post" enctype="multipart/form-data" >
+    <div class="row mb-3">
+        <label for="primer_apellido" class="col-sm-2 col-form-label">Primer Apellido</label>
+        <div class="col-sm-10">
+            <input type="text" name="data[primer_apellido]" class="form-control" placeholder="Primer apellido"
+                   value="<?php echo isset($empleado['primer_apellido']) ? $empleado['primer_apellido'] : ''; ?>" required/>
         </div>
-
-        <div class="mb-3">
-            <label for="segundo_apellido" class="form-label">Segundo apellido</label>
-            <input class="form-control" type="text" name="data[segundo_apellido]" placeholder="Escribe aquí el segundo apellido" value="<?php if(isset($empleados["segundo_apellido"])):echo($empleados['segundo_apellido']);endif;?>" id="segundo_apellido"/>
-        </div>
-
-        <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input class="form-control" type="text" name="data[nombre]" placeholder="Escribe aquí el nombre" value="<?php if(isset($empleados["nombre"])):echo($empleados['nombre']);endif;?>" id="nombre"/>
-        </div>
-
-        <div class="mb-3">
-            <label for="rfc" class="form-label">RFC</label>
-            <input class="form-control" type="text" name="data[rfc]" placeholder="Escribe aquí el RFC" value="<?php if(isset($empleados["rfc"])):echo($empleados['rfc']);endif;?>" id="rfc"/>
-        </div>
-
-        <div class="mb-3">
-           <label for="">Id del usuario</label> 
-           <select name="data[id_usuario]" id="" class="form-select">
-                <?php foreach($usuarios as $usuario):?> 
-                <?php
-                    $selected = "";
-                    if ($empleados['correo'] == $usuario['correo']) {
-                        $selected = "selected";
-                    }
-                ?>
-                <option value="<?php echo($usuario['id_usuario']);?>" <?php echo($selected);?>> <?php echo($usuario['correo']);?> </option>
-                <?php endforeach;?>
-           </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="fotografia" class="form-label">Fotografía</label>
-            <input class="form-control" type="file" name="fotografia" placeholder="Selecciona la fotografía" id="fotografia"/>
-        </div>
-
-        <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
-        </form>
     </div>
-    <div class="col-md-1"></div>
-</div>
-
+    <div class="row mb-3">
+        <label for="segundo_apellido" class="col-sm-2 col-form-label">Segundo Apellido</label>
+        <div class="col-sm-10">
+            <input type="text" name="data[segundo_apellido]" class="form-control" placeholder="Segundo apellido"
+                   value="<?php echo isset($empleado['segundo_apellido']) ? $empleado['segundo_apellido'] : ''; ?>"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+            <input type="text" name="data[nombre]" class="form-control" placeholder="Nombre"
+                   value="<?php echo isset($empleado['nombre']) ? $empleado['nombre'] : ''; ?>" required/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="rfc" class="col-sm-2 col-form-label">RFC</label>
+        <div class="col-sm-10">
+            <input type="text" name="data[rfc]" class="form-control" placeholder="RFC"
+                   value="<?php echo isset($empleado['rfc']) ? $empleado['rfc'] : ''; ?>" required/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="correo" class="col-sm-2 col-form-label">Correo</label>
+        <div class="col-sm-10">
+            <select name="data[id_usuario]" class="form-select" required>
+                <option value="">Seleccione un correo</option>
+                <?php
+                $usuarios = $app->getUsuarios(); 
+                foreach ($usuarios as $usuario):
+                    $selected = (isset($empleado['id_usuario']) && $empleado['id_usuario'] == $usuario['id_usuario']) ? 'selected' : '';
+                ?>
+                    <option value="<?php echo $usuario['id_usuario']; ?>" <?php echo $selected; ?>>
+                        <?php echo $usuario['correo']; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="fotografia" class="col-sm-2 col-form-label">fotografia</label>
+        <div class="col-sm-10">
+            <input type="file" name="fotografia" class="form-control" placeholder="Coloca la fotografia" />       
+        </div>
+    </div>
+    <input type="submit" value="Guardar" class="btn btn-success"/>
+</form>
 <?php require('views/footer.php'); ?>
+
+

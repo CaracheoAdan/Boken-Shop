@@ -1,80 +1,66 @@
 <?php
-require_once ('empleado.class.php');
-require_once ('usuario.class.php');
-$appusuario = new usuario();
-$app = new empleado();
-$app -> checkRole('Administrador');
-
-$accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
-$id=(isset($_GET['id']))?$_GET['id']:null;
+require_once('empleado.class.php');
+$app = new Empleado();
+$app->checkRole('Administrador'); // Verifica el rol de administrador
+$accion = (isset($_GET['accion'])) ? $_GET['accion'] : NULL;
+$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 switch ($accion) {
-    case 'crear': {
-        $usuarios = $appusuario -> readAll();
+    case 'crear':
         include 'views/empleado/crear.php';
         break;
-    }
-
-    case 'nuevo': {
-        $data=$_POST['data'];
+    case 'nuevo':
+        $data = $_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "Empleado dada de alta correctamente";
+            $mensaje = "El empleado se agregó correctamente";
             $tipo = "success";
         } else {
-            $mensaje = "El empleado no ha sido dado de alta";
+            $mensaje = "Hubo un error al agregar el empleado";
             $tipo = "danger";
         }
-
         $empleados = $app->readAll();
         include('views/empleado/index.php');
         break;
-    }
-
-    case 'actualizar': {
-        $empleados = $app -> readOne($id); 
-        $usuarios = $appusuario -> readAll();
+    case 'actualizar':
+        $empleado = $app->readOne($id);
         include('views/empleado/crear.php');
         break;
-    }
-    
-    case 'modificar': {
-        $data= $_POST['data'];
-        $result=$app->update($id,$data);
-        if($result){
-            $mensaje="El empleado se ha actualizado";
-            $tipo="success";
-        }else{
-            $mensaje="No se ha actualizado";
-            $tipo="danger";
+    case 'modificar':
+        $data = $_POST['data'];
+        $resultado = $app->update($id, $data);
+        
+        if ($resultado) {
+            $mensaje = "El empleado se actualizó correctamente";
+            $tipo = "success";
+        } else {
+            $mensaje = "Hubo un error al actualizar el empleado";
+            $tipo = "danger";
         }
         $empleados = $app->readAll();
         include('views/empleado/index.php');
         break;
-    }
-
-    case 'eliminar': {
+    case 'eliminar':
         if (!is_null($id)) {
             if (is_numeric($id)) {
-                $resultado = $app -> delete($id);
+                $resultado = $app->delete($id);
                 if ($resultado) {
-                    $mensaje = "El empleado se eliminó correctamente";
+                    $mensaje = "El empleado se ha eliminado correctamente";
                     $tipo = "success";
                 } else {
-                    $mensaje = "El empleado no se eliminó correctamente";
+                    $mensaje = "Ocurrió un error al eliminar el empleado";
                     $tipo = "danger";
                 }
             }
         }
         $empleados = $app->readAll();
-        include('views/empleado/index.php');
+        include("views/empleado/index.php");
         break;
-    }
-
-    default: {
+    case 'imprimir':
+        $app -> imprimir($id);
+        die();
+    default:
         $empleados = $app->readAll();
         include 'views/empleado/index.php';
-        break;
-    }
 }
 require_once('views/footer.php');
 ?>
