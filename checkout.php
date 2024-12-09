@@ -48,7 +48,7 @@ if ($productos != null) {
                             <a href="#" class="nav-link active">Administrar</a>
                         </li>
                         <li class="nav-item">
-                            <a href="config/admin/login.php" class="nav-link">Bienbenida</a>
+                            <a href="index.html" class="nav-link">Bienvenida</a>
                         </li>
                     </ul>
                     <a href="carrito.php" class="btn btn-primary">Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span></a>                

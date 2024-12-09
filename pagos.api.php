@@ -1,6 +1,6 @@
 <?php
 header("Content-type: application/json; charset=utf-8");
-require_once('venta.class.php');
+require_once('completado.php');
 
 $app = new venta();
 
